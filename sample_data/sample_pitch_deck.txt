@@ -1,0 +1,59 @@
+# Horizon AI Labs - Pitch Deck Summary
+
+## Executive Summary
+Horizon AI Labs is building an enterprise-grade platform for autonomous supply chain optimization. Our proprietary ML model reduces logistics costs by 35% and delivery times by 40% for mid-market retailers.
+
+## Company Overview
+Founded: August 2023
+Headquarters: San Francisco, CA
+Team Size: 12 employees
+
+## The Problem
+Mid-market retailers lose $40 billion annually to supply chain inefficiencies. Current solutions are expensive ($100K+ per year), require 6+ month implementations, and often fail to deliver ROI.
+
+## Our Solution
+Horizon AI Labs offers a cloud-based SaaS platform that:
+- Uses real-time data from ERP/WMS systems
+- Deploys ML models in 2 weeks, not 6 months
+- Achieves 35% reduction in logistics costs
+- Integrates with Shopify, SAP, and Oracle
+- Costs $15K per month for typical mid-market customer
+
+## Traction
+- 8 pilot customers as of March 2024
+- $120K ARR (all from pilot customers)
+- 2 letters of intent for Q3 2024 (combined value $180K ARR)
+- Net Promoter Score: 72 (industry average 40)
+
+## Market Opportunity
+TAM: Global supply chain software market = $25 billion (2024)
+SAM: Mid-market segment (100-500 employees) = $6 billion
+Target customer acquisition cost: $8K
+Target customer lifetime value: $180K
+
+## Fundraising
+Seeking: $5 million Series A
+Use of Funds:
+- Sales & Marketing: $2.5M (30 person team, land 50 new customers)
+- Engineering: $1.5M (expand to 20 person team)
+- Operations: $500K
+- Buffer & runway: $500K
+
+## Financial Projections
+- 2024 (YTD): $120K ARR
+- 2025 (projected): $2.5M ARR (with Series A)
+- 2026 (projected): $8M ARR
+- Path to breakeven: Q4 2025
+
+## Team
+- CEO: Alice Chen (ex-Director of Supply Chain Tech at Amazon)
+- CTO: Bob Kumar (ex-Principal ML Engineer at Instacart)
+- VP Sales: Carol Martinez (ex-Enterprise AE at Blue Yonder)
+
+## Risk Mitigation
+- Diversified customer base across 3 retail verticals (grocery, fashion, e-commerce)
+- Blue-chip advisors including founder of a $2B logistics startup
+- Proven integration partnerships with SAP and Oracle
+
+## Closing Remarks
+Horizon AI Labs is uniquely positioned to capture the underserved mid-market. Our proven unit economics and experienced team give us the foundation to scale rapidly.
