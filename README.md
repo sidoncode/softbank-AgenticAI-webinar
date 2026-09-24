@@ -124,14 +124,13 @@ investment-memo-agent/
 │   • Step 15+: Examples & troubleshooting
 │
 ├── requirements.txt
-│   crewai[google-genai]==1.15.22
+│   crewai[anthropic]==1.15.22
 │   crewai-tools==1.15.22
-│   google-genai==1.65.0
 │   python-dotenv==1.2.3
 │   tavily-python==0.8.4
 │
 ├── .env.example
-│   GEMINI_API_KEY=your-key
+│   ANTHROPIC_API_KEY=your-key
 │   TAVILY_API_KEY=your-key
 │
 ├── sample_data/sample_pitch_deck.txt
@@ -144,7 +143,7 @@ investment-memo-agent/
 
 ## See a Real Run First
 
-[`reports/investment_memo.md`](reports/investment_memo.md) is the memo this notebook produced on 24 Sep 2026 for the sample pitch (Gemini 3.5 Flash-Lite + Tavily, about 1 minute, 6 web searches, free keys). It catches the pitch's pricing contradiction ($15K/month × 8 pilots should be $1.44M ARR, not $120K) and recommends PASS.
+[`reports/investment_memo.md`](reports/investment_memo.md) is the memo this notebook produced on 24 Sep 2026 for the sample pitch: Claude Sonnet 5 + Tavily, about 4 minutes, 5 web searches, about $1.19 of API usage. It finds 9 red flags with the arithmetic shown (starting with $15K/month × 8 pilots = $1.44M ARR, not the $120K claimed) and recommends INVESTIGATE.
 
 ---
 
@@ -152,9 +151,9 @@ investment-memo-agent/
 
 ### Prerequisites
 - Python 3.10–3.13
-- API Keys (free tier works):
-  - **Google Gemini:** https://aistudio.google.com/apikey (Gemini 3.5 Flash-Lite, free, no card)
-  - **Tavily:** https://tavily.com (Web search)
+- API keys:
+  - **Anthropic:** https://console.anthropic.com/account/keys (Claude Sonnet 5; pay-as-you-go, $5 of credit covers many runs)
+  - **Tavily:** https://tavily.com (web search; free plan is enough)
 
 ### Installation
 
@@ -165,7 +164,7 @@ pip install -r requirements.txt
 # 2. Set up environment
 cp .env.example .env
 # Edit .env and add your API keys:
-# GEMINI_API_KEY=...
+# ANTHROPIC_API_KEY=sk-ant-...
 # TAVILY_API_KEY=tvly-...
 
 # 3. Run the notebook
@@ -178,7 +177,7 @@ jupyter notebook Investment_Due_Diligence_Agent.ipynb
 2. **Run Cell 1** to set API keys:
    ```python
    import os
-   os.environ["GEMINI_API_KEY"] = "your-key"
+   os.environ["ANTHROPIC_API_KEY"] = "your-key"
    os.environ["TAVILY_API_KEY"] = "your-key"
    ```
 3. **Run all cells top-to-bottom** (Shift+Enter)
@@ -251,7 +250,7 @@ Conditions:
 | Component | Technology | Why |
 |-----------|------------|-----|
 | **Orchestration** | CrewAI | Multi-agent framework, sequential tasks |
-| **LLM** | Gemini 3.5 Flash-Lite (Google) | Strong reasoning, free tier to start |
+| **LLM** | Claude Sonnet 5 (Anthropic) | State-of-the-art reasoning, cost-effective |
 | **Web Search** | Tavily API | Real-time data, multiple sources |
 | **Environment** | Jupyter Notebook | Interactive, easy to modify |
 | **Language** | Python 3.10–3.13 | Data science standard |
@@ -286,7 +285,7 @@ Conditions:
 ### ✅ Customizable
 - Modify agent prompts for specific focus areas
 - Add agents (Patent analysis, Compliance review, etc.)
-- Adjust LLM model (Gemini Pro for complex, Flash-Lite for speed)
+- Adjust LLM model (Opus for complex, Haiku for speed)
 - Input any pitch deck format
 
 ---
@@ -477,8 +476,9 @@ esg_agent = Agent(
 - **Red flag detection:** High confidence in contradictions
 
 ### Cost
-- **Per analysis:** $0 on free keys (Gemini free tier + Tavily free plan)
-- **Limits:** the free tiers cap requests per minute and per day, so batch runs need a paid key
+- **Per analysis:** about $1.20 on Claude Sonnet 5 (measured on our test run, 24 Sep 2026)
+- **100 analyses:** about $120
+- **1000 analyses:** about $1,200 (still a fraction of 4,000–8,000 analyst hours)
 
 *Cost is negligible vs value of analyst time saved*
 
@@ -500,7 +500,7 @@ esg_agent = Agent(
 
 ### Immediate (Today)
 1. ✅ Install dependencies: `pip install -r requirements.txt`
-2. ✅ Get API keys (Google Gemini + Tavily, both free)
+2. ✅ Get API keys (Anthropic + Tavily)
 3. ✅ Run notebook: `jupyter notebook Investment_Due_Diligence_Agent.ipynb`
 4. ✅ Test on sample pitch deck
 
@@ -548,9 +548,9 @@ esg_agent = Agent(
 
 ## Technical Details
 
-**LLM:** Gemini 3.5 Flash-Lite (`gemini/gemini-3.5-flash-lite` via CrewAI)
-- Reasoning: strong multi-step analysis
-- Cost: free tier to start (rate-limited)
+**LLM:** Claude Sonnet 5 (`anthropic/claude-sonnet-5` via CrewAI)
+- Reasoning: 99th percentile
+- Cost: Low
 - Speed: Medium
 - Perfect for financial analysis
 

@@ -1,7 +1,6 @@
 # Python 3.10–3.13
-crewai[google-genai]==1.15.22
+crewai[anthropic]==1.15.22
 crewai-tools==1.15.22
-google-genai==1.65.0
 python-dotenv==1.2.3
 tavily-python==0.8.4
 jupyter
