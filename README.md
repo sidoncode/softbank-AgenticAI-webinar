@@ -124,11 +124,10 @@ investment-memo-agent/
 │   • Step 15+: Examples & troubleshooting
 │
 ├── requirements.txt
-│   crewai==0.40.0
-│   crewai-tools==0.15.0
-│   anthropic==0.28.0
-│   python-dotenv==1.0.1
-│   tavily-python==0.3.5
+│   crewai[anthropic]==1.15.22
+│   crewai-tools==1.15.22
+│   python-dotenv==1.2.3
+│   tavily-python==0.8.4
 │
 ├── .env.example
 │   ANTHROPIC_API_KEY=your-key
@@ -142,13 +141,19 @@ investment-memo-agent/
 
 ---
 
+## See a Real Run First
+
+[`reports/investment_memo.md`](reports/investment_memo.md) is the memo this notebook produced on 24 Sep 2026 for the sample pitch: Claude Sonnet 5 + Tavily, about 4 minutes, 5 web searches, about $1.19 of API usage. It finds 9 red flags with the arithmetic shown (starting with $15K/month × 8 pilots = $1.44M ARR, not the $120K claimed) and recommends INVESTIGATE.
+
+---
+
 ## Quick Start
 
 ### Prerequisites
-- Python 3.11+
-- API Keys (free tier works):
-  - **Anthropic:** https://console.anthropic.com/account/keys (Claude Sonnet)
-  - **Tavily:** https://tavily.com (Web search)
+- Python 3.10–3.13
+- API keys:
+  - **Anthropic:** https://console.anthropic.com/account/keys (Claude Sonnet 5; pay-as-you-go, $5 of credit covers many runs)
+  - **Tavily:** https://tavily.com (web search; free plan is enough)
 
 ### Installation
 
@@ -245,10 +250,10 @@ Conditions:
 | Component | Technology | Why |
 |-----------|------------|-----|
 | **Orchestration** | CrewAI | Multi-agent framework, sequential tasks |
-| **LLM** | Claude Sonnet (Anthropic) | State-of-the-art reasoning, cost-effective |
+| **LLM** | Claude Sonnet 5 (Anthropic) | State-of-the-art reasoning, cost-effective |
 | **Web Search** | Tavily API | Real-time data, multiple sources |
 | **Environment** | Jupyter Notebook | Interactive, easy to modify |
-| **Language** | Python 3.11+ | Data science standard |
+| **Language** | Python 3.10–3.13 | Data science standard |
 
 ---
 
@@ -471,9 +476,9 @@ esg_agent = Agent(
 - **Red flag detection:** High confidence in contradictions
 
 ### Cost
-- **Per analysis:** ~$0.05-0.15
-- **100 analyses:** ~$5-15
-- **1000 analyses:** ~$50-150
+- **Per analysis:** about $1.20 on Claude Sonnet 5 (measured on our test run, 24 Sep 2026)
+- **100 analyses:** about $120
+- **1000 analyses:** about $1,200 (still a fraction of 4,000–8,000 analyst hours)
 
 *Cost is negligible vs value of analyst time saved*
 
@@ -487,7 +492,7 @@ esg_agent = Agent(
 | `Module not found` | Run `pip install -r requirements.txt` |
 | `Research Agent is slow` | Normal! Making real web calls (30-45 sec) |
 | `No research results` | Agent marks as "Unverified" (correct behavior) |
-| `Different output each run` | Normal variance in LLM output (set temperature lower for consistency) |
+| `Different output each run` | Normal variance in LLM output (tighten expected_output for consistency) |
 
 ---
 
@@ -543,7 +548,7 @@ esg_agent = Agent(
 
 ## Technical Details
 
-**LLM:** Claude Sonnet 3.5 (latest)
+**LLM:** Claude Sonnet 5 (`anthropic/claude-sonnet-5` via CrewAI)
 - Reasoning: 99th percentile
 - Cost: Low
 - Speed: Medium
@@ -557,7 +562,7 @@ esg_agent = Agent(
 **Framework:** CrewAI
 - Multi-agent orchestration
 - Sequential task execution
-- Memory & context passing
+- Context passing between tasks (`context=[...]`)
 - Verbose logging (great for audits)
 
 ---
